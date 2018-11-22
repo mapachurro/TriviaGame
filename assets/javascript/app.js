@@ -165,21 +165,17 @@ $(document).ready(function () {
     function scoreEvaluate() {
         for ( i = 0; i < userAnswers.length; i++) {
             const element = userAnswers[i];
-            userAnswers.forEach(element => {
-                if (element = correct[i]) {
+                if (element == correct[i]) {
                     correctUserAnswers.push(element);
-                    console.log(correctUserAnswers)
-                    
+                    console.log(correctUserAnswers)   
                 }
-                
-            });
         }
                 if (correctUserAnswers.length == 5) {
                     alert("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")    
                 }
                 else{ 
                     // amtCorrect();
-                    alert("ONWARD COMRADE, you got " + "??" + "out of 5 correct!")
+                    alert("ONWARD COMRADE, you got " + correctUserAnswers.length + " out of 5 correct!")
                 }    
     }        
         
