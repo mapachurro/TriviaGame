@@ -1,24 +1,4 @@
-
-
-//When the player clicks 'play', the app will cycle through the questions.
-
-//There will be three possible answers for each question, with tick boxes; only one answer
-//can be chosen per question.
-
-//There will have to be a way to determine whether the answer was correct or not.
-
-//There will have to be counters for questions answered correctly and questions answered
-//incorrectly, and counters for questions not answered--this can be a 'countdown' counter, for
-//each question answered, it subtracts one.
-
-//There will be a timer that runs a question and, when the time is up, moves on to another
-//question. There should probably be a behavior where the player is notified that they ran out 
-//of time.
-
-//
-
 $(document).ready(function () {
-
 
     //The object containing the questions that we will be deploying:
     var Questions = {
@@ -28,30 +8,35 @@ $(document).ready(function () {
                 Answer1: "A sort of commune where you elect a sort of executive officer of the week",
                 Answer2: "A kind of anarchism that's set up in cells part of a larger whole",
                 Answer3: "The belief that anarchical organizing of the working class will help lead to broader societal revolution",
+                Correct: 3,
             },
             {
                 Question: "Which English-speaking author documented up-close the realities of life in pre-dictatorship Catalunya?",
                 Answer1: "Orwell",
                 Answer2: "Hemingway",
                 Answer3: "Fitzgerald",
+                Correct: 1,
             },
             {
                 Question: "Which method does anarcho-syndicalism most clearly embrace?",
                 Answer1: "Representative democratic voting",
                 Answer2: "The overthrow en masse of the bourgeoise",
                 Answer3: "Direct action by the workers",
+                Correct: 3,
             },
             {
                 Question: "What main color do anarchists use in their symbols?",
                 Answer1: "Black",
                 Answer2: "Red",
                 Answer3: "Yellow",
+                Correct: 1,
             },
             {
                 Question: "What animal is associated with the Industrial Workers of the World?",
                 Answer1: "A hawk",
                 Answer2: "A cat",
                 Answer3: "A wolverine",
+                Correct: 2,
             },
         ]
     }
@@ -80,16 +65,19 @@ $(document).ready(function () {
     //Then, subsequent questions. This is what happens when user inputs an answer:
     $("#answer1").on("click", function () {
         userAnswers.push(1);
+        eachAnswer();
         answerLoop();
     })
 
     $("#answer2").on("click", function () {
         userAnswers.push(2);
+        eachAnswer();
         answerLoop();
     })
 
     $("#answer3").on("click", function () {
         userAnswers.push(3);
+        eachAnswer();
         answerLoop();
     })
     //  When the stop button gets clicked, run the stop function.
@@ -116,7 +104,7 @@ $(document).ready(function () {
             //  ...run the stop function.
             stop();
             //  Alert the user that time is up.
-            alert("Time Up!");
+            alert("Time's Up! The correct answer is " + Questions.questionArray[questionIndex][correctIndex]);
         }
     }
 
@@ -147,7 +135,7 @@ $(document).ready(function () {
             console.log("Mr. Hammond, the radio buttons are working");
             questionIndex++;
             console.log("question index " + questionIndex);
-            console.log(userAnswers);
+            console.log("user answers" + userAnswers);
             //And load the next question:
             questionLoop();
             //Reset time to 20
@@ -161,7 +149,23 @@ $(document).ready(function () {
         }
     }
 
-    //The function for evaluating score.
+//The function for evaluating whether each individual answer is correct or not.
+
+//First, we need to get the index of the question.
+//Then, check to see whether the answer given matches the answer provided in the correct answer array at the correct index.
+function eachAnswer() {
+    if (Questions.questionArray[questionIndex].Correct == userAnswers[questionIndex])
+    //If so, print a message to the scren re: correct or not, and move on. Or make it an alert, whatevs
+    alert("Correct!")
+
+    //If not, then alert regarding the fact that it's incorrect, 
+    else {
+        alert("Sorry, the correct answer is " + Questions.questionArray[questionIndex].Correct);
+    }
+}
+
+
+    //The function for evaluating the total score.
     function scoreEvaluate() {
         for ( i = 0; i < userAnswers.length; i++) {
             const element = userAnswers[i];
@@ -171,33 +175,15 @@ $(document).ready(function () {
                 }
         }
                 if (correctUserAnswers.length == 5) {
-                    alert("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")    
+                    alert("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")
+                    stop();    
                 }
                 else{ 
                     // amtCorrect();
                     alert("ONWARD COMRADE, you got " + correctUserAnswers.length + " out of 5 correct!")
+                    stop();
                 }    
     }        
-        
-    
-
-//A small function for tabulating partial correct scores.
-// function amtCorrect(){
-//     let ansCorrect = (5 - [j]);
-// }
-
-
-    //Priorities, in this order: Make it be one question at a time. DONE
-    //Make it move on to the next question on the click. DONE
-    //Make the timer work on the click. DONE
-    //Store user input. DONE 
-    //Compare scores at the end.
-
-    //increment the index of the question you're on with each question you answer. DONE
-    // Don't do a loop through. DONE
-    //create an array of correct answers, DONE
-    //and collect the answers as the game progresses; DONE
-    //compare the two arrays at the end using a for loop.
 
     // Function for looping through the questions:
     function questionLoop() {
@@ -218,5 +204,4 @@ $(document).ready(function () {
         var radioBtn3 = $('<input type="radio" name="rbtnCount">' + answer3 + '</>');
         radioBtn3.appendTo('#answer3');
     }
-
 })
