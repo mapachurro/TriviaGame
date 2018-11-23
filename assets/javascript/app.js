@@ -104,7 +104,7 @@ $(document).ready(function () {
             //  ...run the stop function.
             stop();
             //  Alert the user that time is up.
-            alert("Time's Up! The correct answer is " + Questions.questionArray[questionIndex][correctIndex]);
+            alert("Time's Up! The correct answer is: " + Questions.questionArray[questionIndex][correctIndex]);
         }
     }
 
@@ -160,7 +160,9 @@ function eachAnswer() {
 
     //If not, then alert regarding the fact that it's incorrect, 
     else {
-        alert("Sorry, the correct answer is " + Questions.questionArray[questionIndex].Correct);
+        correctIndex = ("Answer" + Questions.questionArray[questionIndex].Correct);
+        console.log(correctIndex);
+        alert("Sorry, the correct answer is: " + Questions.questionArray[questionIndex][correctIndex]);
     }
 }
 
