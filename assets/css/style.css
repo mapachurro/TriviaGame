@@ -16,3 +16,13 @@ body, html {
       visibility: hidden;
   }
 
+  .text-center {
+      /* Help the user to face the horror of capitalism */
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+  .card-body {
+      /* srsly tho it's horrible! */
+      font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
