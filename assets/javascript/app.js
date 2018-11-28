@@ -53,10 +53,11 @@ $(document).ready(function () {
     //Additional variables that will be needed:
     var questionIndex = [0];
     var time = 21;
+    var correctAlert = "Correct!"
 
     //Gameplay itself. First, the initial click:
     $("#playButton").on("click", function () {
-        $("#instructions").css({ "visibility": "hidden" });
+        $("#instructions").empty();
         $("#quizCard").css({ "visibility": "visible" })
         run();
         questionLoop();
