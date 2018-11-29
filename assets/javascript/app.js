@@ -157,13 +157,15 @@ $(document).ready(function () {
 function eachAnswer() {
     if (Questions.questionArray[questionIndex].Correct == userAnswers[questionIndex])
     //If so, print a message to the scren re: correct or not, and move on. Or make it an alert, whatevs
-    alert("Correct!")
+    $("#messageArea").text(correctAlert);
+    // alert("Correct!")
 
     //If not, then alert regarding the fact that it's incorrect, 
     else {
         correctIndex = ("Answer" + Questions.questionArray[questionIndex].Correct);
         console.log(correctIndex);
-        alert("Sorry, the correct answer is: " + Questions.questionArray[questionIndex][correctIndex]);
+        // alert("Sorry, the correct answer is: " + Questions.questionArray[questionIndex][correctIndex]);
+        $("#messageArea").text("Sorry, the correct answer is: " + Questions.questionArray[questionIndex][correctIndex])
     }
 }
 
@@ -178,12 +180,14 @@ function eachAnswer() {
                 }
         }
                 if (correctUserAnswers.length == 5) {
-                    alert("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")
+                    $("#messageArea").text("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")
+                    // alert("YOU GOT A PERFECT SCORE! HASTA LA VICTORIA SIEMPRE!")
                     stop();    
                 }
                 else{ 
                     // amtCorrect();
-                    alert("ONWARD COMRADE, you got " + correctUserAnswers.length + " out of 5 correct!")
+                    // alert("ONWARD COMRADE, you got " + correctUserAnswers.length + " out of 5 correct!")
+                    $("#messageArea").text("ONWARD COMRADE, you got " + correctUserAnswers.length + " out of 5 correct!")
                     stop();
                 }    
     }        
